@@ -2,7 +2,10 @@
   <nav>
     <div class="logo"></div>
     <div class="menu" v-if="isAuthenticated">
-      <a href="#" @click.prevent="logout" title="log out">Logout</a>
+      <a href="#" @click.prevent="logout" title="log out">
+        <img :src="currentUser.avatar_url" />
+        Logout
+      </a>
     </div>
   </nav>
 </template>
@@ -12,7 +15,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["isAuthenticated"]),
+    ...mapGetters(["isAuthenticated", "currentUser"]),
   },
   methods: {
     logout() {
@@ -34,7 +37,13 @@ nav {
     background: url("../assets/bbb-logo.svg") no-repeat;
   }
   .menu {
-    margin: 25px 25px;
+    margin: 15px 25px;
+
+    img {
+      border-radius: 20px;
+      height: 40px;
+      margin-right: 15px;
+    }
 
     a {
       color: $magenta;
